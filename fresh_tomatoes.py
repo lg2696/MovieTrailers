@@ -166,4 +166,4 @@ def open_movies_page(movies):
 #webbrowser.open_new_tab('file://c/Project1/fresh_tomatoes.html)
 #webbrowser.open('file://c/Project1/fresh_tomatoes.html, new=2, true)
 webbrowser.open('file://C:/OOP/Project1/fresh_tomatoes.html', new=2)
-#this is a change
+
