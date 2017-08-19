@@ -4,10 +4,16 @@
 ## ASSUMPTIONS:
 
 The instructions below assumes that you have Python 2.7 installed.  If you do not have
-Phython installed you can download and install it at Python.org (http://Python.org/) .
+Phython installed you may download and install it at Python.org (http://Python.org/) .
                                                                                          
 ## GETTING STARTED:                                                                        
-To access the Fresh Tomatoes Movie Trailer page, open the **Entertainment_center.py** in IDLE *Python GUI*  and                                     
+To access the Fresh Tomatoes Movie Trailer page, download the following files below to the same folder:
+1. README.md
+2. entertainment_center.py
+3. media.py
+4. fresh_tomatoes.py
+
+Then open the **Entertainment_center.py** in IDLE *Python GUI*  and                                     
 select run module from the Run drop down menu.                                  
                                   
 ## WHAT TO EXPECT:                                                                         
