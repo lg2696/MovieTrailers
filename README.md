@@ -18,7 +18,8 @@ select run module from the Run drop down menu.
                                   
 ## WHAT TO EXPECT:                                                                         
 You should expect to see **Python Shell** open briefly and then a new browser window pop up 
-listing 6 movies with posters and links to their respective trailers.  
+listing 6 movies with posters and links to their respective trailers. Please note that some links may be blocked by YouTube 
+because the owner of the movie requires the link only be accessed directly from YouTube. A link to the movie trailer will be provided opening the movie trailer in a new browser tab.
 
 ## LICENSING INFORMATION:
 
