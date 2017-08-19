@@ -2,8 +2,8 @@ import webbrowser
 import os
 import re
 
-# This file will import the above modules, will take in a list of movie inputs and output it to an HTML web page in the desired format
-# Styles and scripting for the page
+
+# Styles sheet and scripting for the page
 main_page_head = '''
 <!DOCTYPE html>
 <html lang="en">
@@ -59,12 +59,12 @@ main_page_head = '''
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
         $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
-            // Remove the src so the player itself gets removed, as this is only 
+            // Remove the src so the player itself gets removed, as this is the only
             // reliable way to ensure the video stops playing in IE
             $("#trailer-video-container").empty();
         });
         // Start playing the video whenever the trailer modal is opened
-        $(document).on('click', '.movie-title', function (event) {
+        $(document).on('click', '.movie-tile', function (event) {
             var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
             var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
             $("#trailer-video-container").empty().append($("<iframe></iframe>", {
@@ -76,7 +76,7 @@ main_page_head = '''
         });
         // Animate in the movies when the page loads
         $(document).ready(function () {
-          $('.movie-title').hide().first().show("fast", function showNext() {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
             $(this).next("div").show("fast", showNext);
           });
         });
@@ -85,7 +85,7 @@ main_page_head = '''
 '''
 
 
-# The main page layout and title bar
+# The main page layout and title bar.  This section contains the HTML code.
 main_page_content = '''
   <body>
     <!-- Trailer Video Modal -->
@@ -111,23 +111,23 @@ main_page_content = '''
       </div>
     </div>
     <div class="container">
-      {movie_titles}
+      {movie_tiles}
     </div>
   </body>
 </html>
 '''
 
 
-# A single movie entry html template
-movie_title_content = '''
-<div class="col-md-6 col-lg-4 movie-title text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
+# A single movie entry html template.  This piece of code is re-used each time the movie instance is called up from entertaiment_center.py.
+movie_tile_content = '''
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
     <h2>{movie_title}</h2>
 </div>
 '''
 
 
-def create_movie_titles_content(movies):
+def create_movie_tiles_content(movies):
     # The HTML content for this section of the page
     content = ''
     for movie in movies:
@@ -139,8 +139,8 @@ def create_movie_titles_content(movies):
         trailer_youtube_id = (youtube_id_match.group(0) if youtube_id_match
                               else None)
 
-        # Append the title for the movie with its content filled in
-        content += movie_title_content.format(
+        # Append the tile for the movie with its content filled in
+        content += movie_tile_content.format(
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
             trailer_youtube_id=trailer_youtube_id
@@ -149,21 +149,19 @@ def create_movie_titles_content(movies):
 
 
 def open_movies_page(movies):
-    # Create or overwrite the output file
+    # Create or overwrite the output file.  The code that created the html page is stored temporarity.
     output_file = open('fresh_tomatoes.html', 'w')
 
-    # Replace the movie titles placeholder generated content
-    rendered_content = main_page_content.format(
-        movie_titles=create_movie_titles_content(movies))
+    # Replace the movie tiles placeholder generated content
+    rendered_content = main_page_content.format(movie_tiles=create_movie_tiles_content(movies))
 
     # Output the file
     output_file.write(main_page_head + rendered_content)
     output_file.close()
 
-    #open the output file in the browser (in a new tab, if possible)
+    # open the output file in the browser (in a new tab, if possible)
     url = os.path.abspath(output_file.name)
-    #url = 'file://c/Project1/fresh_tomatoes.html'
-#webbrowser.open_new_tab('file://c/Project1/fresh_tomatoes.html)
-#webbrowser.open('file://c/Project1/fresh_tomatoes.html, new=2, true)
-webbrowser.open('file://C:/OOP/Project1/fresh_tomatoes.html', new=2)
+#webbrowser.open('file://' + url, new=2)
 
+#webbrowser.open_new_tab('file://C:/OOP/Project1/fresh_tomatoes.html') Important to make sure path is correct to the appropriate folder.
+webbrowser.open('file://C:/OOP/Project1/MovieTrailers/fresh_tomatoes.html', new=2)
