@@ -3,7 +3,7 @@
 
 The instructions below assumes that you have Python 2.7 installed.  If you do
 not have Phython installed you may download & install it at
-Python.org(http://Python.org/).
+[Python.org] (http://Python.org/).
 
 ## GETTING STARTED:
 To access the Fresh Tomatoes Movie Trailer page, download the following files
